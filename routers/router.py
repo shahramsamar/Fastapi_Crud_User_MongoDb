@@ -17,3 +17,13 @@ async def get_users():
        users = list(users_table.find(
            {},{"_id":0})) 
        return {"users":users}
+   
+@MyRuter.put("/update_user/{username}")
+async  def update_user(username: str, updated_user: User):
+    result = users_table.update_one(
+        {"username": username},
+        {"$set": updated_user.dict()}
+    )   
+    if result.modified_count:
+        return {"message" : "user updated successfully"}
+    return {"message" : "User not found"}
