@@ -11,4 +11,9 @@ async def add_user(user: User):
     user_data = user.dict()
     users_table.insert_one(user_data)
     return {"messsage": "User added successfully"}
-    
+
+@MyRuter.get("/usres")
+async def get_users():
+       users = list(users_table.find(
+           {},{"_id":0})) 
+       return {"users":users}
