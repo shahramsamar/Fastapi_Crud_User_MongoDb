@@ -15,6 +15,6 @@ try:
 except Exception as e:
     print(e)
 
-db = client.users
-users_table = db['user']    
+db = client["user"]
+users_table = db['users']    
     
