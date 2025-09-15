@@ -27,3 +27,10 @@ async  def update_user(username: str, updated_user: User):
     if result.modified_count:
         return {"message" : "user updated successfully"}
     return {"message" : "User not found"}
+
+@MyRuter.delete("/delete_user/{username}")
+async def delete_user(username: str):
+    result = users_table.delete_one({"username": username})
+    if result.deleted_count:
+        return {"message": "User delete successfully"}
+    return {"message": "User not found"}
